@@ -2,7 +2,7 @@
 
 ## Pour correction :
 1. **Lien vidéo:** 
-2. **Lien Déploiement:** https://rn-last-project-alyra.vercel.app
+2. **Lien Déploiement:** https://rn-last-project-alyra-2023.vercel.app/
 
 ## Groupe constitué de :
 - Nacim Rabia
@@ -24,48 +24,15 @@ Voici la liste de la stack utilisée pour la réalisation du projet
 - Solidity
 - Openzeppelin
 - Alchemy provider
-- Vercel
-- PostGresql (DB)
-- Prisma (ORM)
-- Hardhat
-- Next.js
-- NextAuth
-- TypeScript
-- Wagmi
-- Viem
-- Web3Modal
-- TailwindCss
-- ShadCn-UI
-- Eslint
-- Sign-With-Ethereum
-- Crypto.Js (AES Encryption)
-- Zod
+- HardHat
 
 ## Setup project
 
-## 1 - Front
-
-  1 - Clone the project
-  ```shell
-  git clone https://github.com/Alyra-school/rn-project-final-public
-  ```
-
-  2 - Install dependencies
-  ```shell
-  cd rn-project-final-public/front
-  npm i
-  ```
-
-  3 - Run the front
-  ```shell
-  npm run dev
-  ```
-
-## 2 - Back
+## Back
 
   1 - Install dependencies
   ```shell
-  cd rn-project-final-public/back
+  cd back-final
   npm i
   ```
 
@@ -74,7 +41,7 @@ Voici la liste de la stack utilisée pour la réalisation du projet
   npm run local-bc
   ```
 
-  3 - Deploy the voting contract
+  4 - Deploy the voting contract
   ```shell
   npm run deploy-localhost
   ```

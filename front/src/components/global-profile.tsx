@@ -1,14 +1,14 @@
 "use client"
 import React, { useEffect, useState } from 'react';
-import { readContract } from '@wagmi/core';
-import { contractAddress, resolutionsVotingAbi } from '@/constants/common.constants';
-import { useAccount } from 'wagmi';
 import { IResponseBack, IVote } from '@/models/common.model';
-import { getCurrentVoteByIdFromDb, getCurrentVoteFromDb } from '@/server-actions/votes';
+import { getCurrentVoteByIdFromDb } from '@/server-actions/votes';
 import { CommonProfile } from './common-profile';
 import { CommonProfileTallyVote } from './common-profile-tally-vote';
 import Loader from './loader';
 import { useLocalStorage } from 'usehooks-ts';
+import { useAccount } from 'wagmi';
+import { readContract } from '@wagmi/core';
+import { contractAddress, resolutionsVotingAbi } from '@/constants/common.constants';
 
 export const GlobalProfile = () => {
 
@@ -17,18 +17,13 @@ export const GlobalProfile = () => {
   const account = useAccount();
 
   const getVoteId = async () => {
-    try {
-      const voteId = await readContract({
-        address: contractAddress as `0x${string}`,
-        abi: resolutionsVotingAbi,
-        functionName: 'voteId',
-        account: account.address
-      });
-      setFoundVoteId(Number(voteId));
-    } catch (err) {
-      const error = err as Error;
-      console.log(error.message)
-    }
+    const voteId = await readContract({
+      address: contractAddress as `0x${string}`,
+      abi: resolutionsVotingAbi,
+      functionName: 'voteId',
+      account: account.address,
+    });
+    setFoundVoteId(Number(voteId));
   };
 
   const getCurrentVote = async () => {
@@ -37,8 +32,10 @@ export const GlobalProfile = () => {
   }
 
   useEffect(() => {
+    if (!foundVoteId) {
+      getVoteId();
+    }
     getCurrentVote();
-    getVoteId();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
